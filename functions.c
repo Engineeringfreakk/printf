@@ -1,4 +1,5 @@
 #include "main.h"
+
 /************************* PRINT CHAR *************************/
 /**
  * print_char - prints a character
@@ -17,6 +18,7 @@ int print_char(va_list types, char buffer[],
 
 	return (handle_write_char(c, buffer, flags, width, precision, size));
 }
+
 /************************* PRINT A STRING *************************/
 /**
  * print_string - prints a string
@@ -53,7 +55,7 @@ int print_string(va_list types, char buffer[],
 	{
 		if (flags & F_MINUS)
 		{
-			write(1, &str[0], length);
+			write(1, str, length);
 			for (i = width - length; i > 0; i--)
 				write(1, " ", 1);
 			return (width);
@@ -62,12 +64,13 @@ int print_string(va_list types, char buffer[],
 		{
 			for (i = width - length; i > 0; i--)
 				write(1, " ", 1);
-			write(1, &str[0], length);
+			write(1, str, length);
 			return (width);
 		}
 	}
 	return (write(1, str, length));
 }
+
 /************************* PRINT PERCENT SIGN *************************/
 /**
  * print_percent - prints percent sign
@@ -90,6 +93,7 @@ int print_percent(va_list types, char buffer[],
 	UNUSED(size);
 	return (write(1, "%%", 1));
 }
+
 /************************* PRINT INT *************************/
 /**
  * print_int - print int
@@ -127,6 +131,7 @@ int print_int(va_list types, char buffer[],
 	i++;
 	return (write_number(is_negative, i, buffer, flags, width, precision, size));
 }
+
 /************************* PRINT BINARY *************************/
 /**
  * print_binary - print an unsigned number
